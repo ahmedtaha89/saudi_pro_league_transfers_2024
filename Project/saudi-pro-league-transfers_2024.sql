@@ -2,7 +2,7 @@
 
 -- Retrieve All Data 
 SELECT *
-FROM [saudi_pro_league_transfers_2024];
+FROM saudi_pro_league_transfers_2024;
 
 -- عدد الاندية
 SELECT COUNT(DISTINCT club_name) 'Count Of Clubs'
@@ -67,3 +67,17 @@ ORDER BY count(age) DESC
 SELECT position ,  COUNT(position) 'Num Of Positions'
 FROM saudi_pro_league_transfers_2024
 GROUP BY position
+ORDER BY  COUNT(position) DESC
+
+-- STATUS TRANSFER
+SELECT Status_Transfer ,  COUNT(Status_Transfer) 'Num Of Status Transfer'
+FROM saudi_pro_league_transfers_2024
+GROUP BY Status_Transfer , transfer_movement
+HAVING transfer_movement = 'in'
+ORDER BY COUNT(Status_Transfer) DESC
+
+
+SELECT top (10) with ties club_involved_name ,  COUNT(club_involved_name) 'Num Of club_involved_name '
+FROM saudi_pro_league_transfers_2024
+GROUP BY club_involved_name
+ORDER BY COUNT(club_involved_name) DESC
